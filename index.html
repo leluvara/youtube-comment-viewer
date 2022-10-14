@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="x-ua-compatible" content="ie=edge" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<meta
+			name="description"
+			content="View comments on a YouTube video more easily. You can load up to 1000 comments + their replies at a time until all the comments of the video are loaded."
+		/>
+		<meta name="author" content="Leluvara" />
+		<meta name="theme-color" content="#ffffff" />
+		<meta name="background-color" content="#ffffff" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+		<meta name="msapplication-navbutton-color" content="#ffffff" />
+		<meta
+			name="msapplication-square150x150logo"
+			content="./mstile-150x150.png"
+		/>
+		<meta name="msapplication-TileColor" content="#ffffff" />
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="./apple-touch-icon.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="./favicon-32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="./favicon-16x16.png"
+		/>
+		<link rel="manifest" href="./manifest.webmanifest" />
+		<link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5" />
+		<title>Youtube Comment Viewer</title>
+		<link href="./index.css" rel="stylesheet" />
+	</head>
+	<body>
+		<header class="wrap">
+			<div class="row">
+				<div class="col">
+					<button id="sessionToggle" disabled="disabled"></button>
+				</div>
+				<div class="col">
+					<h1><span>Youtube</span><span>Comment</span><span>Viewer</span></h1>
+				</div>
+				<div class="col txt-r">
+					<button id="settingsToggle">
+						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+							<path
+								d="M28 14.2l3.1-3L28 5.7l-3.9 1.1-3.9-2.3-1-4h-6.3l-1 4-4 2.3L4 5.7.8 11.2l3.1 3v4.1L1 21.1l3.3 5.6 4.2-1.2 3.1 1.8 1.1 4.1h6.6l1.1-4.1 3.1-1.8 4.2 1.2 3.3-5.6-3-2.8v-4.1zm-12 7.4a5.6 5.6 0 1 1 0-11.2 5.6 5.6 0 0 1 0 11.2z"
+							/>
+						</svg>
+					</button>
+				</div>
+			</div>
+		</header>
+		<section id="home" class="wrap">
+			<div class="input-group">
+				<input type="text" id="url" placeholder="Video URL or ID" />
+				<input type="text" id="number" value="100" />
+			</div>
+			<div class="input-group">
+				<input type="text" id="api" placeholder="API key..." />
+				<button id="saveapi">Save</button>
+			</div>
+			<p id="apinfo">
+				You need a
+				<a
+					href="https://developers.google.com/youtube/v3/getting-started"
+					target="_blank"
+					>Google API Key</a
+				>
+				to load comments.
+			</p>
+			<button id="load" disabled="disabled">Load comments</button>
+			<div id="error"></div>
+		</section>
+		<section id="session" class="wrap">
+			<div class="row">
+				<div class="col col-sm">
+					<a id="videoUrl" target="_blank"><img id="videoThumbnail" /></a>
+				</div>
+				<div class="col">
+					<h2 id="videoTitle"></h2>
+					<p>Total comments: <b id="videoTotalComments"></b></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col txt-c">
+					<button id="prev"></button>
+					<span>Page <b id="currentPage">1</b></span>
+					<button id="next"></button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col">
+					<table>
+						<tr>
+							<td>Comments</td>
+							<td>&bull;</td>
+							<td id="pageCommentCount">0</td>
+						</tr>
+						<tr>
+							<td class="txt-r">Replies</td>
+							<td>&bull;</td>
+							<td id="pageReplyCount">0</td>
+						</tr>
+					</table>
+				</div>
+				<div class="col txt-r"><button id="sort">NEW FIRST</button></div>
+			</div>
+			<div id="loader"></div>
+			<div id="comments"></div>
+			<div id="top"><a href="#"></a></div>
+		</section>
+		<div id="settings">
+			<div class="wrap">
+				<div class="toggle">
+					<input id="largeText" type="checkbox" />
+					<label for="largeText">Large text</label>
+				</div>
+				<div class="toggle">
+					<input id="metaToggle" type="checkbox" checked="checked" />
+					<label for="metaToggle">Comment metadata</label>
+				</div>
+				<div class="toggle">
+					<input id="nightToggle" type="checkbox" />
+					<label for="nightToggle">Night mode</label>
+				</div>
+				<div class="toggle">
+					<input id="scrollToggle" type="checkbox" checked="checked" />
+					<label for="scrollToggle">Scroll to top button</label>
+				</div>
+			</div>
+		</div>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"
+			integrity="sha256-0rguYS0qgS6L4qVzANq4kjxPLtvnp5nn2nB5G1lWRv4="
+			crossorigin="anonymous"
+		></script>
+		<script type="text/javascript" src="./index.js"></script>
+	</body>
+</html>
