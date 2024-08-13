@@ -352,7 +352,7 @@ function commentDom(comment) {
 	if (comment.replies) {
 		var replies = document.createElement('div');
 		replies.classList.add('comment-replies');
-		for (var j = comment.replies.length - 1; j >= 0; j--) {
+		for (var j = 0; j < comment.replies.length; j++) {
 			replies.appendChild(commentDom(comment.replies[j]));
 			pageReplyCount++;
 		}
