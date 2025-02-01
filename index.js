@@ -352,9 +352,21 @@ function commentDom(comment) {
 	if (comment.replies) {
 		var replies = document.createElement('div');
 		replies.classList.add('comment-replies');
-		for (var j = comment.replies.length - 1; j >= 0; j--) {
-			replies.appendChild(commentDom(comment.replies[j]));
-			pageReplyCount++;
+
+		if (
+			comment.replies.length > 1 &&
+			comment.replies[0].snippet.publishedAt <
+				comment.replies[1].snippet.publishedAt
+		) {
+			for (var j = 0; j < comment.replies.length; j++) {
+				replies.appendChild(commentDom(comment.replies[j]));
+				pageReplyCount++;
+			}
+		} else {
+			for (var j = comment.replies.length - 1; j >= 0; j--) {
+				replies.appendChild(commentDom(comment.replies[j]));
+				pageReplyCount++;
+			}
 		}
 		container.appendChild(replies);
 	}

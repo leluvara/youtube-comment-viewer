@@ -1,4 +1,4 @@
-var cacheName = 'youtube-comment-viewer-v1';
+var cacheName = 'youtube-comment-viewer-v2';
 var contentToCache = [
 	'./',
 	'./index.html',
